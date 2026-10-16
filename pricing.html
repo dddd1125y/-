@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="목표 순이익과 플랫폼 수수료, 배송비, 협상 할인율을 입력해 중고거래에 필요한 최소 판매가와 추천 등록가를 계산하세요.">
+<meta name="robots" content="index,follow"><link rel="canonical" href="https://dddd1125y.github.io/-/pricing.html">
+<meta property="og:type" content="website"><meta property="og:title" content="목표 이익 기준 판매가 역산 계산기 | 리셀리"><meta property="og:description" content="목표 이익을 먼저 정하고 수수료와 배송비를 반영한 최소 판매가 및 등록가를 계산하세요.">
+<title>목표 이익 기준 판매가 역산 계산기 | 리셀리</title>
+<style>
+:root{--ink:#17243a;--blue:#3978f6;--bg:#f4f7fb;--line:#e3e9f2;--muted:#65738a;--green:#07845c;--red:#b93845}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1c2940;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+header{background:var(--ink);color:white;padding:15px max(16px,calc((100vw - 980px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}
+header a{color:white;text-decoration:none;font-weight:800}header nav{display:flex;gap:14px;flex-wrap:wrap}header nav a{font-size:13px;font-weight:650}
+.wrap{max-width:980px;margin:auto;padding:26px 16px 46px}h1{font-size:clamp(27px,5vw,38px);line-height:1.25;margin:0 0 10px;color:var(--ink)}h2{font-size:21px;margin:0 0 14px;color:var(--ink)}h3{font-size:16px;margin:18px 0 5px}
+.lead{font-size:16px;color:#4b5b72}.muted{font-size:13px;color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.85fr);gap:16px;margin-top:20px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 3px 14px #1c294008}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:13px;font-weight:700}
+input{width:100%;padding:12px;border:1px solid #d9e1ed;border-radius:10px;background:white;color:#17243a;font:inherit;font-size:16px}input:focus{outline:2px solid #bcd0ff;border-color:var(--blue)}
+.result{background:#eef9f4;border:1px solid #ccefe0;border-radius:13px;padding:16px;margin-top:16px}.result .big{font-size:clamp(26px,4vw,33px);font-weight:850;color:var(--green);line-height:1.25;overflow-wrap:anywhere}.result .final{font-size:22px;font-weight:800;margin:7px 0;color:var(--ink)}
+.breakdown{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}.breakdown div{background:#fff;border-radius:9px;padding:11px;border:1px solid #dce8e2}.breakdown small{display:block;color:var(--muted);font-size:12px}.breakdown b{display:block;margin-top:3px}
+.formula{background:#f5f7fb;border-radius:10px;padding:12px;font-weight:650;font-size:14px;overflow-wrap:anywhere}
+footer{max-width:980px;margin:auto;padding:0 16px 30px;color:var(--muted);font-size:12px}footer nav{display:flex;gap:13px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:15px}footer a{color:#476083;text-decoration:none}
+.btn{display:inline-block;padding:11px 14px;background:var(--blue);color:white!important;border-radius:10px;text-decoration:none;font-weight:700}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.wrap{padding:22px 12px 36px}.card{padding:15px}header{padding:14px 12px;align-items:flex-start}header nav{gap:9px}header nav a{font-size:12px}.fields{gap:10px}}
+@media(max-width:390px){.fields{grid-template-columns:1fr}.breakdown{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><a href="index.html">↗ 리셀리</a><nav><a href="index.html">손익 계산기</a><a href="guide.html">사용 가이드</a><a href="about.html">소개</a></nav></header>
+<main class="wrap">
+<p class="muted">리셀리 무료 도구 / 판매가 계획</p>
+<h1>목표 이익으로 판매가 역산하기</h1>
+<p class="lead">상품을 얼마에 팔아야 목표한 이익이 남을까요? 매입가와 모든 거래 비용, 수수료율, 협상 할인 폭을 입력하면 필요한 최소 판매가와 등록 가격을 계산합니다.</p>
+<div class="layout">
+<section class="card">
+<h2>판매 가격 조건</h2>
+<div class="fields">
+<div class="field"><label for="buy">매입가 (원)</label><input id="buy" type="number" min="0" step="1000" value="130000" inputmode="numeric"></div>
+<div class="field"><label for="inship">매입 배송비 (원)</label><input id="inship" type="number" min="0" step="500" value="0" inputmode="numeric"></div>
+<div class="field"><label for="outship">판매자 부담 배송비 (원)</label><input id="outship" type="number" min="0" step="500" value="3000" inputmode="numeric"></div>
+<div class="field"><label for="other">기타 비용 (원)</label><input id="other" type="number" min="0" step="500" value="1000" inputmode="numeric"></div>
+<div class="field"><label for="feeRate">판매 수수료율 (%)</label><input id="feeRate" type="number" min="0" max="99" step="0.1" value="5.5" inputmode="decimal"></div>
+<div class="field"><label for="target">목표 순이익 (원)</label><input id="target" type="number" min="0" step="1000" value="30000" inputmode="numeric"></div>
+<div class="field"><label for="discount">구매자 협상 할인 예상 (%)</label><input id="discount" type="number" min="0" max="99" step="1" value="5" inputmode="decimal"></div>
+</div>
+<p class="muted">수수료율은 직접 확인한 실제 요율을 입력하세요. 할인율은 등록가에서 실제 판매가로 내려갈 것으로 예상하는 비율입니다.</p>
+</section>
+<aside class="card">
+<h2>계산 결과</h2>
+<div class="result">
+<small>목표 이익을 지키는 최소 실제 판매가</small>
+<div class="big" id="minSale">—</div>
+<div class="formula" id="formula">비용과 목표 이익을 수수료 차감 후 금액으로 환산합니다.</div>
+<div style="margin-top:16px"><small>추천 등록가 (1,000원 단위 올림)</small><div class="final" id="listPrice">—</div></div>
+<div id="actualAtList" class="muted">협상 할인 후 예상 판매가: —</div>
+<div class="breakdown">
+<div><small>예상 플랫폼 수수료</small><b id="feeAmount">—</b></div>
+<div><small>등록가 기준 예상 순이익</small><b id="profitAtList">—</b></div>
+<div><small>매입·배송·기타 비용 합계</small><b id="allCosts">—</b></div>
+<div><small>목표 대비 여유 금액</small><b id="buffer">—</b></div>
+</div>
+</div>
+<p class="muted" id="warning">계산 결과는 입력값을 바탕으로 한 추정치이며 실제 정산액과 다를 수 있습니다.</p>
+<a class="btn" href="index.html">기본 손익 계산기로 이동</a>
+</aside>
+</div>
+<section class="card" style="margin-top:18px">
+<h2>계산식 이해하기</h2>
+<p><strong>최소 실제 판매가 = (매입가 + 매입 배송비 + 판매자 부담 배송비 + 기타 비용 + 목표 순이익) ÷ (1 − 수수료율)</strong></p>
+<p>수수료가 판매 금액의 일정 비율로 부과된다고 가정한 식입니다. 협상으로 등록가보다 낮게 판매될 것을 예상한다면 다음 식으로 등록 가격을 역산합니다.</p>
+<p><strong>추천 등록가 = 최소 실제 판매가 ÷ (1 − 예상 할인율)</strong> 이후 계산된 등록가는 1,000원 단위로 올림합니다.</p>
+<h3>사용 전 확인할 점</h3>
+<ul>
+<li>플랫폼마다 수수료 계산 방식과 결제 수수료가 다를 수 있습니다. 정액 수수료나 최소·최대 수수료가 있다면 별도로 계산해야 합니다.</li>
+<li>판매자가 부담하는 배송비와 포장비, 수리비 등은 한 번씩만 입력하세요.</li>
+<li>추천 등록가는 판매를 보장하지 않습니다. 비슷한 상품의 실거래가, 상태, 구성품과 예상 판매 기간을 함께 고려하세요.</li>
+</ul>
+<h3>자주 묻는 질문</h3>
+<p><strong>수수료율을 모르면 어떻게 하나요?</strong><br>해당 플랫폼의 공식 수수료 안내나 판매자 정산 내역을 확인한 뒤 입력하세요. 임의로 설정한 비율은 결과의 정확도를 낮춥니다.</p>
+<p><strong>실제 거래 손익은 어디서 관리하나요?</strong><br><a href="index.html">기본 손익 계산기</a>에서 상품을 재고로 저장한 뒤 판매 완료 시 실제 판매 금액과 실제 수수료·비용을 입력하면 실현 순이익에 반영할 수 있습니다.</p>
+</section>
+</main>
+<footer><nav><a href="index.html">손익 계산기</a><a href="guide.html">사용 가이드</a><a href="pricing.html">판매가 역산</a><a href="about.html">서비스 소개</a><a href="privacy.html">개인정보 안내</a><a href="terms.html">이용 안내</a><a href="https://github.com/dddd1125y/-/issues">문의·오류 제보</a></nav><p>리셀리(Reselly)는 중고거래 손익 계산과 재고 관리를 돕는 독립 도구입니다. 결과는 입력값에 따른 추정치이며 특정 플랫폼과 제휴 관계가 없습니다.</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const money=n=>Math.round(n||0).toLocaleString('ko-KR')+'원';
+const value=id=>Math.max(0,Number($(id).value)||0);
+function calcPrice(){
+ const buy=value('buy'),inship=value('inship'),outship=value('outship'),other=value('other'),target=value('target');
+ const feePercent=value('feeRate'),discountPercent=value('discount');
+ const feeRate=feePercent/100,discount=discountPercent/100;
+ if(feeRate>=1||discount>=1){$('warning').textContent='수수료율과 할인율은 각각 100% 미만이어야 합니다.';$('minSale').textContent='입력값 확인';$('listPrice').textContent='—';return}
+ const costs=buy+inship+outship+other;
+ const minimum=(costs+target)/(1-feeRate);
+ const rawList=minimum/(1-discount);
+ const list=Math.ceil(rawList/1000)*1000;
+ const expectedSale=list*(1-discount);
+ const fee=expectedSale*feeRate;
+ const profit=expectedSale-costs-fee;
+ $('minSale').textContent=money(minimum);
+ $('formula').textContent='기본 비용 '+money(costs)+' + 목표 이익 '+money(target)+' 을 수수료 차감 후 판매가로 환산';
+ $('listPrice').textContent=money(list);
+ $('actualAtList').textContent='협상 할인 후 예상 판매가: '+money(expectedSale);
+ $('feeAmount').textContent=money(fee);
+ $('profitAtList').textContent=money(profit);
+ $('allCosts').textContent=money(costs);
+ $('buffer').textContent=money(profit-target);
+ $('warning').textContent='수수료는 판매가의 '+feePercent+'%, 예상 할인율은 등록가의 '+discountPercent+'%로 가정했습니다. 실제 정산액과 시세를 반드시 확인하세요.';
+}
+['buy','inship','outship','other','feeRate','target','discount'].forEach(id=>$(id).addEventListener('input',calcPrice));
+calcPrice();
+</script>
+</body></html>
