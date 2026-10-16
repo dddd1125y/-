@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="중고거래 리셀 순이익 계산법, 배송비·수수료 반영 방법, 재고 관리 절차를 리셀리 사용 예시와 함께 설명합니다.">
+<meta name="robots" content="index,follow"><link rel="canonical" href="https://dddd1125y.github.io/-/guide.html">
+<title>리셀 수익 계산·재고 관리 가이드 | 리셀리</title><style>
+:root{color-scheme:light;--ink:#17243a;--blue:#3978f6;--bg:#f4f7fb;--line:#e3e9f2;--muted:#65738a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1c2940;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75}
+header{background:var(--ink);color:#fff;padding:17px max(16px,calc((100vw - 940px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}
+header a{color:#fff;text-decoration:none;font-weight:800;font-size:21px}.wrap{max-width:940px;margin:auto;padding:28px 16px 54px}
+h1{font-size:clamp(28px,5vw,38px);line-height:1.25;margin:0 0 12px;color:var(--ink)}h2{margin-top:30px;font-size:21px;color:var(--ink)}h3{font-size:17px;margin-bottom:4px;color:var(--ink)}
+.lead{font-size:17px;color:#46566e}.muted{color:var(--muted);font-size:14px}.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px;margin:16px 0}
+a{color:#225fd1}ul,ol{padding-left:22px}li{margin:6px 0}.pill{display:inline-block;background:#eaf0ff;color:#254f9e;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700}
+nav{display:flex;gap:14px;flex-wrap:wrap}nav a{font-size:14px;font-weight:650;text-decoration:none}
+.btn{display:inline-block;background:var(--blue);color:white!important;padding:11px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+footer{max-width:940px;margin:auto;padding:0 16px 30px;color:var(--muted);font-size:13px}footer nav{border-top:1px solid var(--line);padding-top:16px}
+table{border-collapse:collapse;width:100%;margin:12px 0}th,td{padding:10px;border:1px solid var(--line);text-align:left;font-size:14px}th{background:#f1f5fb}
+@media(max-width:560px){.wrap{padding:22px 12px 40px}.card{padding:15px}header{padding:14px 12px}table{display:block;overflow-x:auto}}
+</style></head><body>
+<header><a href="index.html">↗ 리셀리</a><nav><a href="index.html">계산기</a><a href="about.html">소개</a></nav></header>
+<main class="wrap"><span class="pill">초보자 가이드</span><h1>중고거래 리셀 순이익 계산하는 법</h1>
+<p class="lead">판매가에서 매입가만 빼면 실제로 남는 돈을 과대평가하기 쉽습니다. 배송비, 결제 수수료, 수리비처럼 거래에 들어간 비용까지 기록해야 거래별 손익을 현실적으로 비교할 수 있습니다.</p>
+<div class="card"><h2>1. 순이익 계산 공식</h2><p><strong>순이익 = 판매가 − 매입가 − 매입 배송비 − 판매자 부담 배송비 − 수수료 − 기타 비용</strong></p><p>기타 비용에는 포장재, 수리·세척비, 유료 노출비처럼 해당 거래 때문에 발생한 금액을 넣습니다. 구매자가 별도로 부담한 배송비를 판매자가 지출한 비용으로 중복 입력하지 않도록 주의하세요.</p></div>
+<h2>2. 계산 예시</h2><p>상품을 130,000원에 매입하고 180,000원에 판매한다고 가정하겠습니다. 매입 배송비 3,000원, 판매자 부담 배송비 3,500원, 기타 비용 1,000원, 플랫폼 수수료 4,500원이 들었다면 순이익은 다음과 같습니다.</p>
+<div class="card"><p>180,000원 − 130,000원 − 3,000원 − 3,500원 − 1,000원 − 4,500원</p><h2 style="color:#07845c;margin-top:4px">순이익 38,000원</h2><p class="muted">위 숫자는 계산법을 설명하기 위한 예시이며 현재 특정 플랫폼의 공식 수수료율을 뜻하지 않습니다.</p></div>
+<h2>3. 수익률은 기준을 확인하세요</h2><p>판매가 기준 수익률은 순이익을 판매가로 나눈 값이고, 매입가 기준 수익률은 순이익을 매입가로 나눈 값입니다. 같은 거래라도 분모가 달라 퍼센트가 다르게 표시될 수 있으므로 서로 다른 기준의 수익률을 직접 비교하지 마세요.</p>
+<h2>4. 리셀리로 기록하는 순서</h2><ol><li><a href="index.html">손익 계산기</a>에 상품명과 판매 플랫폼을 입력합니다.</li><li>매입가, 예상 판매가, 매입 배송비, 판매자 부담 배송비와 기타 비용을 입력합니다.</li><li>수수료 설정에서 사용하는 결제 방식의 실제 수수료를 확인하고 필요한 경우 직접 수정합니다.</li><li>예상 순이익이 충분한지 확인한 뒤 '재고로 저장'을 누릅니다.</li><li>실제로 판매한 상품은 '재고 관리'에서 '판매 완료'로 바꿉니다. 거래 내역은 CSV로 내려받아 보관할 수 있습니다.</li></ol>
+<h2>5. 플랫폼 수수료 확인법</h2><p>수수료는 플랫폼, 결제 방식, 판매 유형, 이벤트 및 정책 변경에 따라 다를 수 있습니다. 리셀리의 기본 수수료율은 계산 편의를 위한 초기 예시이므로, 실제 거래 전에 해당 플랫폼의 최신 공식 수수료 안내와 정산 내역을 확인하세요. 알 수 없는 비용은 임의로 0원이라고 가정하기보다 확인 후 입력하는 것이 정확합니다.</p>
+<h2>6. 매입 전에 확인할 항목</h2><ul><li>최근 동일 모델·상태의 실제 거래가와 현재 등록 매물 가격을 구분해서 확인합니다.</li><li>플랫폼 수수료와 배송비를 반영해도 목표 이익이 남는지 계산합니다.</li><li>전자기기는 작동 상태, 계정 잠금 여부, 구성품과 흠집을 확인합니다.</li><li>판매까지 걸릴 시간을 고려해 자금이 재고에 묶이는 기간을 관리합니다.</li><li>구매·판매 증빙과 정산 내역을 보관하고, 반품·분쟁 가능성도 비용과 시간에 반영합니다.</li></ul>
+<h2>자주 묻는 질문</h2><h3>계산기 값이 실제 정산 금액과 다를 수 있나요?</h3><p>네. 실제 수수료, 배송비, 할인·환불·분쟁 등 거래별 조건이 다를 수 있습니다. 계산기에는 확인된 비용을 입력하고 최종 이익은 실제 입금액과 비용을 기준으로 다시 확인하세요.</p>
+<h3>상품 기록이 다른 기기에서도 보이나요?</h3><p>아니요. 현재 상품·수수료 기록은 사용 중인 브라우저의 로컬 저장소에 저장됩니다. 서버 계정이나 기기 간 자동 동기화 기능은 없으므로, 필요하면 CSV로 거래 내역을 백업하세요.</p>
+<h3>리셀리에서 매입·판매가 자동으로 이루어지나요?</h3><p>아니요. 리셀리는 기록과 계산을 돕는 도구입니다. 상품 검색, 가격 검증, 구매, 판매, 배송 및 고객 응대는 이용자가 직접 진행해야 합니다.</p>
+<div class="card"><strong>직접 계산해 보기</strong><p>실제 거래에 들어간 비용을 입력해 예상 순이익을 확인해 보세요.</p><a class="btn" href="index.html">리셀 수익 계산기 열기</a></div>
+</main><footer><nav><a href="index.html">손익 계산기</a><a href="guide.html">사용 가이드</a><a href="about.html">서비스 소개</a><a href="privacy.html">개인정보 안내</a><a href="terms.html">이용 안내</a><a href="https://github.com/dddd1125y/-/issues">문의·오류 제보</a></nav><p>리셀리(Reselly)는 중고거래 손익을 직접 기록하고 추정하기 위한 무료 도구입니다. 특정 플랫폼과 제휴 관계가 없으며, 계산 결과와 거래 판단은 이용자 본인의 책임입니다.</p></footer></body></html>
